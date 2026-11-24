@@ -1,0 +1,177 @@
+<%- include('partials/header') %>
+
+<main id="top">
+    <!-- Hero Section -->
+    <section class="hero container">
+        <div class="status-pill">
+            <span class="status-indicator"></span>
+            <%= data.personal.status %>
+        </div>
+        <h1 class="hero-title">
+            <%= data.personal.name %>
+            <span class="accent-line"><%= data.personal.role %></span>
+        </h1>
+        <p class="hero-tagline"><%= data.personal.tagline %></p>
+        
+        <div class="hero-cta">
+            <a href="/download-resume" class="btn btn-primary">
+                <i class="fa-solid fa-download"></i> Download Resume (PDF)
+            </a>
+            <a href="#projects" class="btn btn-outline">
+                View My Work <i class="fa-solid fa-arrow-down-right"></i>
+            </a>
+        </div>
+
+        <div class="quick-stats">
+            <% data.about.highlights.forEach(item => { %>
+                <div class="stat-box">
+                    <span class="stat-val"><%= item.value %></span>
+                    <span class="stat-lbl"><%= item.label %></span>
+                </div>
+            <% }) %>
+        </div>
+    </section>
+
+    <!-- About & Objective Section -->
+    <section id="about" class="container section">
+        <div class="section-head">
+            <span class="eyebrow">01 / PROFILE</span>
+            <h2>About & Career Objective</h2>
+        </div>
+        <div class="about-grid">
+            <div class="card">
+                <h3><i class="fa-solid fa-user-astronaut"></i> Who I Am</h3>
+                <p><%= data.about.summary %></p>
+            </div>
+            <div class="card accent-border">
+                <h3><i class="fa-solid fa-bullseye"></i> Career Objective</h3>
+                <p><%= data.about.objective %></p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="container section">
+        <div class="section-head">
+            <span class="eyebrow">02 / CAPABILITIES</span>
+            <h2>Technical Stack</h2>
+        </div>
+        <div class="skills-grid">
+            <% data.skills.forEach(group => { %>
+                <div class="card skill-box">
+                    <div class="skill-head">
+                        <i class="fa-solid <%= group.icon %>"></i>
+                        <h3><%= group.category %></h3>
+                    </div>
+                    <div class="pill-wrap">
+                        <% group.items.forEach(skill => { %>
+                            <span class="skill-pill"><%= skill %></span>
+                        <% }) %>
+                    </div>
+                </div>
+            <% }) %>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="container section">
+        <div class="section-head">
+            <span class="eyebrow">03 / WORK</span>
+            <h2>Selected & Practice Projects</h2>
+        </div>
+        <div class="projects-grid">
+            <% data.projects.forEach(project => { %>
+                <article class="card project-card <%= project.featured ? 'is-featured' : '' %>">
+                    <div class="project-meta">
+                        <span class="proj-cat"><%= project.category %></span>
+                        <span class="proj-badge"><%= project.badge %></span>
+                    </div>
+                    <h3><%= project.title %></h3>
+                    <p class="proj-desc"><%= project.description %></p>
+                    <ul class="proj-list">
+                        <% project.features.forEach(feat => { %>
+                            <li><%= feat %></li>
+                        <% }) %>
+                    </ul>
+                    <div class="proj-stack">
+                        <% project.tech.forEach(t => { %>
+                            <span><%= t %></span>
+                        <% }) %>
+                    </div>
+                </article>
+            <% }) %>
+        </div>
+    </section>
+
+    <!-- Education Section -->
+    <section id="education" class="container section">
+        <div class="section-head">
+            <span class="eyebrow">04 / BACKGROUND</span>
+            <h2>Education & Training</h2>
+        </div>
+        <div class="edu-list">
+            <% data.education.forEach(edu => { %>
+                <div class="card edu-row">
+                    <div class="edu-left">
+                        <span class="edu-period"><%= edu.period %></span>
+                        <h3><%= edu.degree %></h3>
+                        <p><%= edu.institution %></p>
+                    </div>
+                    <div class="edu-right">
+                        <span class="edu-detail"><%= edu.detail %></span>
+                    </div>
+                </div>
+            <% }) %>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="container section">
+        <div class="section-head">
+            <span class="eyebrow">05 / CONNECT</span>
+            <h2>Get In Touch</h2>
+        </div>
+        <div class="contact-grid">
+            <div class="card contact-info">
+                <h3>Contact Details</h3>
+                <p>Reach out for Full Stack Developer internships, junior roles, or project collaborations.</p>
+                <div class="info-items">
+                    <a href="mailto:<%= data.personal.email %>" class="info-link">
+                        <i class="fa-solid fa-envelope"></i> <%= data.personal.email %>
+                    </a>
+                    <a href="tel:<%= data.personal.phone %>" class="info-link">
+                        <i class="fa-solid fa-phone"></i> <%= data.personal.phone %>
+                    </a>
+                    <div class="info-link">
+                        <i class="fa-solid fa-location-dot"></i> <%= data.personal.location %>
+                    </div>
+                </div>
+                <a href="/download-resume" class="btn btn-primary full-w">
+                    <i class="fa-solid fa-file-arrow-down"></i> Download Official Resume
+                </a>
+            </div>
+
+            <form class="card contact-form" id="contactForm">
+                <h3>Send a Direct Message</h3>
+                <div class="form-group">
+                    <label for="name">Your Name</label>
+                    <input type="text" id="name" name="name" placeholder="Enter your name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" name="email" placeholder="you@company.com" required>
+                </div>
+                <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea id="message" name="message" rows="4" placeholder="Hi Mehul, we'd love to discuss an opportunity..." required></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">
+                    Send Message <i class="fa-solid fa-paper-plane"></i>
+                </button>
+                <p id="formResponse" class="form-msg"></p>
+            </form>
+        </div>
+    </section>
+</main>
+
+<%- include('partials/footer') %>

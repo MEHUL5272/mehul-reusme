@@ -1,0 +1,19 @@
+    <footer class="footer">
+        <div class="container footer-inner">
+            <div>
+                <strong><%= data.personal.name %></strong>
+                <p>Built from scratch with Node.js, Express & EJS.</p>
+            </div>
+            <div class="footer-links">
+                <a href="/download-resume"><i class="fa-solid fa-file-pdf"></i> Download Resume</a>
+                <a href="mailto:<%= data.personal.email %>"><i class="fa-solid fa-envelope"></i> Email</a>
+            </div>
+        </div>
+        <div class="copyright">
+            © <%= currentYear %> <%= data.personal.name %>. All rights reserved.
+        </div>
+    </footer>
+
+    <script src="/js/main.js"></script>
+</body>
+</html>
